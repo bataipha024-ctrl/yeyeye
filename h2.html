@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+  <title>💌 Thư gửi Huỳnh Hương • Lớp 12</title>
+  <style>
+    :root {
+      --petal-pink: #f8bbd0;
+      --deep-rose: #c2185b;
+      --soft-blush: #fce4ec;
+      --warm-coral: #f06292;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: #fce4ec;
+      background-image:
+        radial-gradient(circle at 15% 25%, #f8bbd0 1px, transparent 1px),
+        radial-gradient(circle at 75% 65%, #f48fb1 1px, transparent 1px),
+        radial-gradient(circle at 45% 80%, #f06292 1px, transparent 1px),
+        radial-gradient(circle at 85% 15%, #ec407a 0.8px, transparent 0.8px),
+        radial-gradient(circle at 30% 55%, #f78da7 1.2px, transparent 1.2px);
+      background-size: 70px 70px, 90px 90px, 80px 80px, 100px 100px, 65px 65px;
+      font-family: 'Segoe UI', 'Quicksand', 'Dancing Script', 'Arial', cursive, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      animation: gentleBgShift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleBgShift {
+      0% { background-color: #fce4ec; }
+      100% { background-color: #f8d5e0; }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 30% 40%, rgba(255, 182, 193, 0.35) 0%, rgba(255, 160, 180, 0.2) 50%, rgba(240, 140, 160, 0.25) 100%);
+      backdrop-filter: blur(0.5px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .main-wrapper {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    /* Phong bì */
+    .envelope {
+      position: relative;
+      width: 280px;
+      height: 340px;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+      filter: drop-shadow(0 20px 35px rgba(200, 80, 110, 0.35));
+      animation: floatEnvelope 4s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .envelope:hover {
+      transform: scale(1.04) translateY(-6px);
+      filter: drop-shadow(0 28px 45px rgba(200, 80, 110, 0.5));
+    }
+
+    .envelope:active {
+      transform: scale(0.96);
+      transition: transform 0.1s;
+    }
+
+    @keyframes floatEnvelope {
+      0%, 100% { transform: translateY(0px); }
+      30% { transform: translateY(-12px); }
+      60% { transform: translateY(-4px); }
+      85% { transform: translateY(-8px); }
+    }
+
+    .envelope-body {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #fff0f3, #ffd6e0, #fec7d7);
+      border-radius: 20px 20px 30px 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 -8px 15px rgba(180, 60, 80, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.6s ease;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+      background: linear-gradient(180deg, #ffd0dc 0%, #fbb1c3 50%, #f8a0b5 100%);
+      clip-path: polygon(0 0, 50% 70%, 100% 0);
+      border-radius: 20px 20px 0 0;
+      transform-origin: top center;
+      transition: transform 0.7s cubic-bezier(0.68, -0.2, 0.27, 1.2);
+      box-shadow: 0 4px 15px rgba(200, 70, 100, 0.3);
+      z-index: 3;
+    }
+
+    .envelope.opened .envelope-flap {
+      transform: rotateX(175deg);
+      box-shadow: 0 10px 25px rgba(200, 70, 100, 0.5);
+    }
+
+    .seal-heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3.5rem;
+      z-index: 5;
+      filter: drop-shadow(0 6px 10px rgba(200, 50, 80, 0.5));
+      animation: heartbeat 1.2s ease-in-out infinite;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    .envelope.opened .seal-heart {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      14% { transform: translate(-50%, -50%) scale(1.15); }
+      28% { transform: translate(-50%, -50%) scale(1); }
+      42% { transform: translate(-50%, -50%) scale(1.12); }
+      56% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .envelope-text {
+      margin-top: auto;
+      margin-bottom: 25px;
+      font-family: 'Dancing Script', 'Quicksand', cursive;
+      font-size: 1.5rem;
+      color: #b3415c;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 2;
+      transition: opacity 0.4s;
+      text-shadow: 0 2px 5px rgba(255, 200, 210, 0.8);
+    }
+
+    .envelope.opened .envelope-text {
+      opacity: 0;
+    }
+
+    /* Màn hình chiếu chữ */
+    .screen {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      height: 82vh;
+      max-height: 750px;
+      background: rgba(255, 240, 245, 0.45);
+      backdrop-filter: blur(16px);
+      border-radius: 3rem 3rem 2.5rem 2.5rem;
+      box-shadow: 0 30px 55px rgba(255, 105, 135, 0.35), 0 0 0 2.5px rgba(255, 255, 255, 0.55),
+        inset 0 0 40px rgba(255, 220, 230, 0.3);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.8rem 1rem;
+      animation: screenAppear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    .screen.visible {
+      display: flex;
+    }
+
+    @keyframes screenAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(40px);
+        border-radius: 50%;
+      }
+      60% {
+        opacity: 0.9;
+        transform: scale(1.02) translateY(-5px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        border-radius: 3rem 3rem 2.5rem 2.5rem;
+      }
+    }
+
+    .credits-container {
+      width: 100%;
+      height: 85%;
+      overflow: hidden;
+      mask-image: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 5%, black 18%, black 82%, rgba(0,0,0,0.2) 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 5%, black 18%, black 82%, rgba(0,0,0,0.2) 94%, transparent 100%);
+      position: relative;
+    }
+
+    .moving-text {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      color: #b0304b;
+      text-shadow: 3px 3px 12px rgba(255, 220, 220, 0.9), 0 0 24px #ffb7c5;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 4.8vw, 2.3rem);
+      line-height: 2.2;
+      letter-spacing: 0.7px;
+      white-space: normal;
+      word-break: break-word;
+      padding: 0 18px;
+      font-family: 'Dancing Script', 'Great Vibes', 'Quicksand', cursive;
+      /* TUYẾN TÍNH đều từ đầu đến cuối */
+      animation: riseUp 32s linear forwards;
+      animation-play-state: paused;
+    }
+
+    .moving-text.animate {
+      animation-play-state: running;
+    }
+
+    .moving-text p {
+      margin: 2rem 0;
+      font-weight: 700;
+      filter: drop-shadow(0 4px 10px rgba(255, 140, 157, 0.7));
+      background: linear-gradient(to right, #c4455a, #9c2d44);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.5px;
+    }
+
+    .moving-text .highlight {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 2.5rem 0 1.5rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #b71c4e, #e91e63, #d81b60);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px #ffb6c1;
+      animation: shimmerText 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmerText {
+      0%, 100% { filter: drop-shadow(0 0 14px #ffb6c1); }
+      50% { filter: drop-shadow(0 0 32px #ff8da1); }
+    }
+
+    .moving-text .signature {
+      margin-top: 3rem;
+      font-size: 2.2rem;
+      font-style: italic;
+      font-weight: 800;
+      background: linear-gradient(to right, #8b1a3b, #c2185b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* KEYFRAME TUYẾN TÍNH – tốc độ đều toàn bộ */
+    @keyframes riseUp {
+      0% {
+        transform: translateY(105%);
+        opacity: 0.3;
+      }
+      5% {
+        opacity: 1;
+      }
+      20% {
+        transform: translateY(72%);
+      }
+      40% {
+        transform: translateY(36%);
+      }
+      60% {
+        transform: translateY(0%);
+      }
+      75% {
+        transform: translateY(-18%);
+        opacity: 0.9;
+      }
+      90% {
+        transform: translateY(-52%);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-105%);
+        opacity: 0;
+      }
+    }
+
+    .btn-replay {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(210, 100, 130, 0.5);
+      border-radius: 50px;
+      padding: 8px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #9c2d44;
+      cursor: pointer;
+      z-index: 25;
+      letter-spacing: 0.8px;
+      font-family: 'Quicksand', sans-serif;
+      transition: all 0.35s;
+      box-shadow: 0 4px 15px rgba(200, 100, 120, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-replay:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #c2185b;
+      color: #7f1d35;
+      box-shadow: 0 8px 25px rgba(200, 70, 100, 0.5);
+      transform: translateX(-50%) translateY(-3px);
+    }
+    .btn-replay:active {
+      transform: translateX(-50%) scale(0.94);
+      transition: 0.1s;
+    }
+
+    .film-note {
+      position: absolute;
+      bottom: 18px;
+      right: 20px;
+      font-size: 0.85rem;
+      color: #c4455a;
+      background: rgba(255, 255, 255, 0.55);
+      padding: 4px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      font-weight: 600;
+      z-index: 20;
+      letter-spacing: 0.4px;
+      box-shadow: 0 2px 8px rgba(200, 100, 120, 0.3);
+      pointer-events: none;
+    }
+
+    /* Đồng hồ đếm ngược */
+    .countdown-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #b3415c;
+      font-size: 5rem;
+      font-weight: 800;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 30;
+      font-family: 'Quicksand', sans-serif;
+      text-shadow: 0 0 30px #ffb6c1, 0 0 60px #f8bbd0;
+    }
+    .countdown-text.show {
+      opacity: 1;
+    }
+    .countdown-text.pulse {
+      animation: countPulse 0.8s ease-out;
+    }
+    @keyframes countPulse {
+      0% { transform: translate(-50%, -50%) scale(1.6); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Nút bật/tắt nhạc */
+    .music-toggle {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(210, 100, 130, 0.4);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b3415c;
+      transition: all 0.3s;
+      box-shadow: 0 2px 10px rgba(200, 100, 120, 0.25);
+    }
+    .music-toggle:hover {
+      background: rgba(255, 255, 255, 0.85);
+      border-color: #c2185b;
+    }
+
+    .petal {
+      position: fixed;
+      top: -10%;
+      z-index: 15;
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.75;
+      filter: drop-shadow(0 0 7px #f8bbd0);
+      font-size: 1.7rem;
+      user-select: none;
+      color: #f78da7;
+      text-shadow: 0 0 12px #ffb6c1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0.4; }
+      12% { opacity: 0.9; transform: translateY(16vh) rotate(55deg) scale(1.05); }
+      28% { transform: translateY(32vh) rotate(130deg) scale(0.85); }
+      55% { transform: translateY(60vh) rotate(210deg) scale(1.15); opacity: 0.8; }
+      80% { transform: translateY(82vh) rotate(310deg) scale(0.65); opacity: 0.5; }
+      100% { transform: translateY(108vh) rotate(370deg) scale(0.35); opacity: 0; }
+    }
+
+    .sparkle {
+      position: fixed;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 14px #ff99bb, 0 0 28px #ffb6c1;
+      opacity: 0.65;
+      z-index: 4;
+      pointer-events: none;
+      animation: sparkleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes sparkleFloat {
+      0%, 100% { opacity: 0.3; transform: scale(0.7) translateY(0); }
+      50% { opacity: 0.9; transform: scale(1.4) translateY(-15px); }
+    }
+
+    @media (max-width: 500px) {
+      .envelope {
+        width: 220px;
+        height: 270px;
+      }
+      .seal-heart {
+        font-size: 2.8rem;
+      }
+      .moving-text {
+        font-size: 1.2rem;
+      }
+      .moving-text .highlight {
+        font-size: 2.2rem;
+      }
+      .btn-replay {
+        padding: 6px 20px;
+        font-size: 0.9rem;
+      }
+      .countdown-text {
+        font-size: 3.5rem;
+      }
+      .music-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        top: 10px;
+        right: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nhạc nền (tự động phát khi mở thư) -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- 👉 THAY ĐỔI ĐƯỜNG DẪN NHẠC CỦA BẠN Ở ĐÂY -->
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <div class="main-wrapper" id="mainWrapper">
+    <!-- Phong bì -->
+    <div class="envelope" id="envelope" title="Nhấn để mở thư 💌">
+      <div class="envelope-body">
+        <div class="envelope-flap"></div>
+        <span class="seal-heart">💗</span>
+        <span class="envelope-text">📬 Gửi Huỳnh Hương</span>
+      </div>
+    </div>
+
+    <!-- Màn hình chiếu chữ -->
+    <div class="screen" id="screen">
+      <div class="credits-container">
+        <div class="moving-text" id="movingText">
+          <p>🌷✨</p>
+          <p class="highlight">Gửi Bạn Huỳnh Hương thân mến,</p>
+          <p>dù đã học với nhau 3 năm</p>
+          <p>nhưng chỉ ngồi với nhau một năm</p>
+          <p>nhưng ngồi cùng bạn</p>
+          <p>đã để lại cho mình</p>
+          <p>những ký ức tuổi học trò</p>
+          <p>vô cùng tươi đẹp.</p>
+          <p>🌸</p>
+          <p>Mình chúc bạn đạt nhiều thành công</p>
+          <p>và đạt được nhiều kỳ vọng</p>
+          <p>trong kỳ thi sắp tới.</p>
+          <p>🍀📚</p>
+          <p class="signature">Thương mến,</p>
+          <p class="signature" style="font-size: 2rem; margin-top: 0;">người bạn cùng lớp</p>
+          <p style="margin-top: 3rem; font-size: 1.8rem;">🎓💗</p>
+        </div>
+      </div>
+      <div class="film-note">✨ kết thúc phim ✨</div>
+      <div class="countdown-text" id="countdownText">5</div>
+      <button class="music-toggle" id="musicToggle" title="Bật/tắt nhạc">🔊</button>
+      <button class="btn-replay" id="btnReplay" title="Xem lại lời chúc">🔄 Xem lại</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const envelope = document.getElementById('envelope');
+      const screen = document.getElementById('screen');
+      const movingText = document.getElementById('movingText');
+      const btnReplay = document.getElementById('btnReplay');
+      const countdownText = document.getElementById('countdownText');
+      const bgMusic = document.getElementById('bgMusic');
+      const musicToggle = document.getElementById('musicToggle');
+
+      let envelopeOpened = false;
+      let petalInterval;
+      let sparkleElements = [];
+      let countdownInterval = null;
+      let musicPlaying = false;
+
+      // --- Nhạc ---
+      function toggleMusic() {
+        if (!bgMusic.src || bgMusic.src === window.location.href) {
+          alert('🎵 Bạn hãy thêm đường dẫn nhạc vào thẻ <audio> trong code nhé!');
+          return;
+        }
+        if (musicPlaying) {
+          bgMusic.pause();
+          musicToggle.textContent = '🔇';
+          musicPlaying = false;
+        } else {
+          bgMusic.play().then(() => {
+            musicToggle.textContent = '🔊';
+            musicPlaying = true;
+          }).catch(() => {
+            alert('Trình duyệt chặn tự động phát. Hãy bấm nút thêm lần nữa.');
+          });
+        }
+      }
+
+      musicToggle.addEventListener('click', toggleMusic);
+
+      function tryAutoPlayMusic() {
+        if (!bgMusic.src || bgMusic.src === window.location.href) return;
+        bgMusic.play().then(() => {
+          musicPlaying = true;
+          musicToggle.textContent = '🔊';
+        }).catch(() => {
+          musicPlaying = false;
+          musicToggle.textContent = '🔇';
+        });
+      }
+
+      // --- Cánh hoa & lấp lánh ---
+      function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        const emojis = ['🌸', '🌷', '🪷', '💮', '🏵️', '✿', '❀', '🌺', '💐', '🩷'];
+        petal.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        const leftPos = Math.random() * 100;
+        petal.style.left = leftPos + '%';
+        const size = Math.random() * 2.4 + 1.2;
+        petal.style.fontSize = size + 'rem';
+        const duration = Math.random() * 10 + 8;
+        petal.style.animationDuration = duration + 's';
+        const delay = Math.random() * 8;
+        petal.style.animationDelay = delay + 's';
+        const colors = ['#f8bbd0', '#f48fb1', '#f06292', '#ec407a', '#f78da7', '#fce4ec', '#ffb6c1', '#f9a8c8', '#e5738c'];
+        petal.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(petal);
+        const totalTime = (duration + delay) * 1000 + 600;
+        setTimeout(() => {
+          if (petal && petal.parentNode) petal.remove();
+        }, totalTime);
+      }
+
+      function startPetals() {
+        for (let i = 0; i < 22; i++) {
+          setTimeout(() => createPetal(), i * 200);
+        }
+        petalInterval = setInterval(() => {
+          if (document.querySelectorAll('.petal').length < 35) {
+            createPetal();
+          }
+        }, 1600);
+      }
+
+      function createSparkles() {
+        const body = document.body;
+        for (let i = 0; i < 10; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          const size = Math.random() * 7 + 2.5;
+          sparkle.style.width = size + 'px';
+          sparkle.style.height = size + 'px';
+          sparkle.style.left = Math.random() * 100 + '%';
+          sparkle.style.top = Math.random() * 100 + '%';
+          sparkle.style.animationDelay = Math.random() * 4 + 's';
+          sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          body.appendChild(sparkle);
+          sparkleElements.push(sparkle);
+        }
+      }
+
+      function resetAndPlayText() {
+        movingText.classList.remove('animate');
+        void movingText.offsetWidth;
+        movingText.classList.add('animate');
+      }
+
+      // --- Đếm ngược & chạy chữ ngay khi kết thúc ---
+      function showCountdown(show) {
+        countdownText.classList.toggle('show', show);
+      }
+
+      function startCountdown() {
+        let counter = 5;
+        countdownText.textContent = counter;
+        showCountdown(true);
+        countdownText.classList.add('pulse');
+        setTimeout(() => countdownText.classList.remove('pulse'), 800);
+
+        countdownInterval = setInterval(() => {
+          counter--;
+          if (counter > 0) {
+            countdownText.textContent = counter;
+            countdownText.classList.add('pulse');
+            setTimeout(() => countdownText.classList.remove('pulse'), 800);
+          } else {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+            countdownText.textContent = '✨';
+            countdownText.classList.add('pulse');
+            setTimeout(() => {
+              showCountdown(false);
+              resetAndPlayText();
+            }, 200);
+          }
+        }, 1000);
+      }
+
+      function clearAllTimers() {
+        if (countdownInterval) {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+        }
+      }
+
+      function openEnvelope() {
+        if (envelopeOpened) return;
+        envelopeOpened = true;
+        envelope.classList.add('opened');
+        setTimeout(() => {
+          envelope.style.display = 'none';
+          screen.classList.add('visible');
+          tryAutoPlayMusic();
+          startCountdown();
+        }, 650);
+      }
+
+      function closeScreen() {
+        clearAllTimers();
+        screen.classList.remove('visible');
+        movingText.classList.remove('animate');
+        showCountdown(false);
+        envelope.style.display = 'flex';
+        envelope.classList.remove('opened');
+        envelopeOpened = false;
+        void envelope.offsetWidth;
+      }
+
+      envelope.addEventListener('click', openEnvelope);
+
+      btnReplay.addEventListener('click', () => {
+        closeScreen();
+        setTimeout(() => {
+          openEnvelope();
+        }, 900);
+      });
+
+      movingText.addEventListener('animationend', (e) => {
+        if (e.animationName === 'riseUp') {
+          btnReplay.style.animation = 'pulseBtn 2s ease-in-out infinite';
+        }
+      });
+
+      const styleExtra = document.createElement('style');
+      styleExtra.textContent = `
+        @keyframes pulseBtn {
+          0%,100% { box-shadow: 0 4px 15px rgba(200,100,120,0.3); }
+          50% { box-shadow: 0 8px 30px rgba(200,70,100,0.6); }
+        }
+      `;
+      document.head.appendChild(styleExtra);
+
+      startPetals();
+      createSparkles();
+
+      document.body.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        if (sparkleElements.length > 0) {
+          const s = sparkleElements[0];
+          s.style.transform = `translate(${(x-0.5)*8}px, ${(y-0.5)*8}px)`;
+        }
+      });
+
+      console.log('💌 Thư đã sẵn sàng! Hãy nhấn vào phong bì để mở lời chúc.');
+    })();
+  </script>
+</body>
+</html>
